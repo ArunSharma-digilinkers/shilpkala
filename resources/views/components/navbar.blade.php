@@ -23,6 +23,9 @@
 
                 @auth
                     <a href="{{ url('/account') }}" class="font-ui text-base font-medium transition-colors hover:text-primary" :class="(scrolled || !transparent) ? 'text-text-dark' : 'text-white'">Account</a>
+                    @if (auth()->user()->isAdmin())
+                        <a href="{{ url('/admin') }}" class="font-ui text-base font-medium transition-colors hover:text-primary" :class="(scrolled || !transparent) ? 'text-text-dark' : 'text-white'">Admin</a>
+                    @endif
                 @else
                     <a href="{{ route('login') }}" class="font-ui text-base font-medium transition-colors hover:text-primary" :class="(scrolled || !transparent) ? 'text-text-dark' : 'text-white'">Login</a>
                 @endauth
@@ -54,6 +57,9 @@
                 <a href="{{ url('/contact') }}" class="font-ui text-sm font-medium text-text-dark hover:text-primary">Contact</a>
                 @auth
                     <a href="{{ url('/account') }}" class="font-ui text-sm font-medium text-text-dark hover:text-primary">Account</a>
+                    @if (auth()->user()->isAdmin())
+                        <a href="{{ url('/admin') }}" class="font-ui text-sm font-medium text-text-dark hover:text-primary">Admin</a>
+                    @endif
                 @else
                     <a href="{{ route('login') }}" class="font-ui text-sm font-medium text-text-dark hover:text-primary">Login</a>
                 @endauth

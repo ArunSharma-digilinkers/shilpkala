@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@plugin '@tailwindcss/typography';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -8,9 +9,9 @@
 @theme {
     --color-primary: #FC5A6D;
     --color-primary-dark: #e0475a;
-    --color-dark-gray: #636363;
-    --color-text-dark: #4C4C4C;
-    --color-light-gray: #9C9C9C;
+    --color-dark-gray: #4A4A4A;
+    --color-text-dark: #333333;
+    --color-light-gray: #777777;
     --color-bg-light: #F9F9F9;
 
     --font-heading: 'Playfair Display', Georgia, serif;
@@ -21,6 +22,7 @@
 body {
     font-family: var(--font-body);
     color: var(--color-text-dark);
+    font-variant-numeric: lining-nums;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -67,4 +69,22 @@ h1, h2, h3, h4, h5, h6 {
 
 .accordion-content {
     transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+/* Prose styling overrides for page content */
+.prose h2 {
+    @apply font-heading text-text-dark;
+}
+.prose h3 {
+    @apply font-heading text-text-dark;
+}
+.prose a {
+    @apply text-primary hover:text-primary-dark;
+}
+.prose strong {
+    @apply text-text-dark;
+}
+.prose ul > li::marker,
+.prose ol > li::marker {
+    @apply text-primary;
 }

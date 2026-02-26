@@ -16,7 +16,7 @@
             @else
                 <div class="space-y-6 text-dark-gray leading-relaxed">
                     <div class="text-center mb-8">
-                        <img src="{{ asset('images/site/rural.jpg') }}" alt="Shilpkala Artisans" class="rounded-lg mx-auto max-w-md w-full">
+                        <img src="{{ asset('images/site/craft3.jpg') }}" alt="Vibrant Handcrafted Indian Pottery - Shilpkala" class="rounded-lg mx-auto max-w-md w-full">
                     </div>
 
                     <p>
