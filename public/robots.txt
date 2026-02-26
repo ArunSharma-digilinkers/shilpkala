@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /checkout/
+Disallow: /account/
+Disallow: /cart
+Disallow: /livewire-*
+
+Sitemap: https://shilpkalaworld.com/sitemap.xml

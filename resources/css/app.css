@@ -1,0 +1,70 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --color-primary: #FC5A6D;
+    --color-primary-dark: #e0475a;
+    --color-dark-gray: #636363;
+    --color-text-dark: #4C4C4C;
+    --color-light-gray: #9C9C9C;
+    --color-bg-light: #F9F9F9;
+
+    --font-heading: 'Playfair Display', Georgia, serif;
+    --font-body: 'Raleway', 'Segoe UI', sans-serif;
+    --font-ui: 'Fira Sans', 'Segoe UI', sans-serif;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--color-text-dark);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+}
+
+.navbar-scrolled {
+    @apply bg-white/95 shadow-md backdrop-blur-sm;
+}
+
+.navbar-top {
+    @apply bg-transparent;
+}
+
+.hero-slide {
+    @apply absolute inset-0 transition-opacity duration-1000 ease-in-out;
+}
+
+.product-img-bg {
+    background: radial-gradient(circle, #FDF6EE 0%, #FFF9F5 50%, #FFFFFF 100%);
+}
+
+.product-card:hover .product-image {
+    @apply scale-105;
+}
+
+.product-image {
+    @apply transition-transform duration-500 ease-in-out;
+}
+
+.btn-primary {
+    @apply inline-block bg-primary text-white px-6 py-3 rounded-md font-ui text-sm font-semibold tracking-wide
+           hover:bg-primary-dark transition-colors duration-300 cursor-pointer;
+}
+
+.btn-outline {
+    @apply inline-block border-2 border-primary text-primary px-6 py-3 rounded-md font-ui text-sm font-semibold tracking-wide
+           hover:bg-primary hover:text-white transition-colors duration-300 cursor-pointer;
+}
+
+.section-padding {
+    @apply py-16 md:py-24;
+}
+
+.accordion-content {
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+}
