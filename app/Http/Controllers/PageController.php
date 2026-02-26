@@ -39,7 +39,7 @@ class PageController extends Controller
         $message = ContactMessage::create($validated);
 
         try {
-            Mail::to(config('mail.from.address', 'admin@shilpkala.com'))
+            Mail::to(config('services.contact_form.mail_to', config('mail.from.address')))
                 ->send(new ContactFormSubmitted($message));
         } catch (\Exception $e) {
             // Silently fail - message is still saved in DB

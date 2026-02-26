@@ -40,4 +40,8 @@ return [
         'secret' => env('RAZORPAY_SECRET'),
     ],
 
+    'contact_form' => [
+        'mail_to' => env('CONTACT_FORM_MAIL_ADDRESS'),
+    ],
+
 ];
