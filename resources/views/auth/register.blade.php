@@ -1,4 +1,8 @@
 <x-guest-layout>
+    @if(config('services.recaptcha.site_key'))
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    @endif
+
     <h2 class="text-2xl font-heading font-bold text-text-dark text-center mb-6">Create Account</h2>
 
     <form method="POST" action="{{ route('register') }}">
@@ -38,6 +42,13 @@
                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition">
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-1" />
         </div>
+
+        @if(config('services.recaptcha.site_key'))
+        <div class="mb-4">
+            <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
+            <x-input-error :messages="$errors->get('g-recaptcha-response')" class="mt-1" />
+        </div>
+        @endif
 
         <button type="submit" class="btn-primary w-full text-center">Create Account</button>
 

@@ -1,4 +1,8 @@
 <x-guest-layout>
+    @if(config('services.recaptcha.site_key'))
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    @endif
+
     <h2 class="text-2xl font-heading font-bold text-text-dark text-center mb-6">Sign In</h2>
 
     <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -30,6 +34,13 @@
                 <a href="{{ route('password.request') }}" class="text-sm text-primary hover:underline">Forgot password?</a>
             @endif
         </div>
+
+        @if(config('services.recaptcha.site_key'))
+        <div class="mb-4">
+            <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
+            <x-input-error :messages="$errors->get('g-recaptcha-response')" class="mt-1" />
+        </div>
+        @endif
 
         <button type="submit" class="btn-primary w-full text-center">Sign In</button>
 
