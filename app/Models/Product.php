@@ -46,7 +46,7 @@ class Product extends Model
     public function getPrimaryImageUrlAttribute(): string
     {
         $image = $this->primaryImage();
-        return $image ? asset('images/products/' . $image->image_path) : asset('images/site/shilpkala.jpg');
+        return $image ? $image->url : asset('images/site/shilpkala.jpg');
     }
 
     public function getEffectivePriceAttribute(): float

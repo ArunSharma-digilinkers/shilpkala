@@ -68,7 +68,7 @@ class ShopController extends Controller
         OpenGraph::setDescription($product->short_description ?? '');
         OpenGraph::setUrl(route('shop.show', $product->slug));
         if ($product->primary_image_url) {
-            OpenGraph::addImage(asset($product->primary_image_url));
+            OpenGraph::addImage($product->primary_image_url);
         }
         JsonLd::setTitle($product->name);
         JsonLd::setType('Product');

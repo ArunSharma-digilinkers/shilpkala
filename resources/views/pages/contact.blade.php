@@ -1,6 +1,12 @@
 @extends('layouts.app')
 @section('title', 'Contact Us - Shilpkala')
 
+@if(config('services.recaptcha.site_key'))
+    @push('scripts')
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    @endpush
+@endif
+
 @section('content')
 <div class="pt-20">
     <x-breadcrumb :items="[['label' => 'Contact Us']]" />
@@ -53,6 +59,11 @@
                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">{{ old('message') }}</textarea>
                         @error('message') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                     </div>
+
+                    @if(config('services.recaptcha.site_key'))
+                        <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
+                        @error('g-recaptcha-response') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                    @endif
 
                     <button type="submit" class="btn-primary w-full text-center">Send Message</button>
                 </form>

@@ -7,7 +7,7 @@
     "name": "{{ $product->name }}",
     "description": "{{ $product->short_description ?? substr(strip_tags($product->description ?? ''), 0, 200) }}",
     @if($product->primary_image_url)
-    "image": "{{ asset($product->primary_image_url) }}",
+    "image": "{{ $product->primary_image_url }}",
     @endif
     "sku": "{{ $product->sku }}",
     "brand": {

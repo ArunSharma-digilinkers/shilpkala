@@ -10,12 +10,15 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
 use Filament\Schemas\Components\Grid;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Actions\EditAction;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -107,6 +110,37 @@ class ProductResource extends Resource
                         ]),
                     ])
                     ->collapsible(),
+                Section::make('Product Images')
+                    ->schema([
+                        Repeater::make('images')
+                            ->relationship()
+                            ->schema([
+                                FileUpload::make('image_path')
+                                    ->label('Image')
+                                    ->image()
+                                    ->disk('public')
+                                    ->directory('products')
+                                    ->visibility('public')
+                                    ->required(),
+                                Grid::make(3)->schema([
+                                    TextInput::make('alt_text')
+                                        ->label('Alt Text')
+                                        ->maxLength(255),
+                                    TextInput::make('sort_order')
+                                        ->label('Sort Order')
+                                        ->numeric()
+                                        ->default(0)
+                                        ->minValue(0),
+                                    Toggle::make('is_primary')
+                                        ->label('Primary Image')
+                                        ->default(false),
+                                ]),
+                            ])
+                            ->defaultItems(0)
+                            ->reorderable()
+                            ->collapsible()
+                            ->columnSpanFull(),
+                    ]),
                 Section::make('Status')
                     ->schema([
                         Toggle::make('is_featured')
@@ -120,6 +154,10 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
+                ImageColumn::make('primary_image_url')
+                    ->label('Image')
+                    ->circular()
+                    ->defaultImageUrl(asset('images/site/shilpkala.jpg')),
                 TextColumn::make('name')
                     ->searchable()
                     ->sortable()
